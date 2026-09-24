@@ -2,7 +2,7 @@ export function CameraGridSkeleton({ count = 8 }) {
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4">
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="aspect-video animate-pulse rounded-md border border-ops-border bg-ops-panel" />
+        <div key={i} className="aspect-video animate-pulse rounded-xl border border-white/[0.08] bg-[#07080c]" />
       ))}
     </div>
   );

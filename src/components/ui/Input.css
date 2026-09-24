@@ -29,7 +29,7 @@
 .field__input:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(61, 165, 217, 0.15);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
 }
 
 .field__input--error {

@@ -3,29 +3,35 @@
 @tailwind utilities;
 
 :root {
-  --bg: #12161c;
-  --surface: #1b212b;
-  --surface-raised: #232b37;
-  --border: #2a323d;
-  --text: #e8eaed;
-  --text-muted: #8b93a1;
+  --bg: #09090b;
+  --surface: #121316;
+  --surface-raised: #18191e;
+  --surface-glass: rgba(18, 19, 22, 0.75);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.2);
+  --text: #f4f4f5;
+  --text-muted: #a1a1aa;
+  --text-dim: #52525b;
 
-  --accent: #3da5d9;
-  --accent-dark: #2c86b3;
+  --accent: #ffffff;
+  --accent-dark: #d4d4d8;
+  --accent-titanium: #e4e4e7;
 
-  --critical: #e5484d;
-  --medium: #f5a623;
-  --low: #4b9f6e;
+  --critical: #ff4757;
+  --medium: #ffc048;
+  --low: #2ed573;
 
   --font-display: "Space Grotesk", system-ui, sans-serif;
-  --font-body: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: "IBM Plex Mono", "Courier New", monospace;
 
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 10px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
 
-  --sidebar-width: 220px;
+  --sidebar-expanded: 260px;
+  --sidebar-collapsed: 72px;
+  --sidebar-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -87,6 +93,7 @@ code,
   font-family: var(--font-mono);
 }
 
+/* ─── Layout shells ─── */
 .app-shell {
   display: flex;
   min-height: 100%;
@@ -117,6 +124,76 @@ code,
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* ─── AI Glass Utilities ─── */
+.glass-card {
+  background: rgba(18, 19, 22, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.04);
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ─── Glow Animations ─── */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes subtleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* ─── Scrollbar Styling ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-dim);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
 }
 
 @media (prefers-reduced-motion: reduce) {
